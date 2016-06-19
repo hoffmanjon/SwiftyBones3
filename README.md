@@ -1,6 +1,6 @@
 ![SwiftyBones](https://github.com/hoffmanjon/SwiftyBones/raw/master/images/logo.png)
 
-A Swift3 library for interacting with the GPIO, PWM and Analog pins on the BeagleBone Black.  
+A Swift3 library for interacting with the GPIO, PWM and Analog pins on the BeagleBone Black. You can find the swift 2 version here <a href=https://github.com/hoffmanjon/SwiftyBones>https://github.com/hoffmanjon/SwiftyBones</a> 
 
 SwiftyBones is used to program <a href="https://github.com/hoffmanjon/SwiftyBones_BuddyBot">BuddyBot</a> which is the first robot programming in the Swift programming language.  Note that BuddyBot has not been updated for Swift3 yet but that is on my list.
 
