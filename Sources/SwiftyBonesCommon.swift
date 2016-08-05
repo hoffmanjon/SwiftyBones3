@@ -82,12 +82,15 @@ extension GPIO {
         }
         
         repeat {
-            let count: Int = fread(UnsafeMutablePointer(buffer), 1, bufSize, fp)
+	    let buf = UnsafeMutablePointer<CChar>.allocate(capacity: bufSize)
+            //let count: Int = fread(UnsafeMutablePointer(buffer), 1, bufSize, fp)
+            let count: Int = fread(buf, 1, bufSize, fp)
             guard ferror(fp) == 0 else {
                 break
             }
             if count > 0 {
-	        oString += String(buffer) 
+		buf[count-1] = 0
+		oString += String.init(cString: buf) 
             }
         } while feof(fp) == 0
         return oString

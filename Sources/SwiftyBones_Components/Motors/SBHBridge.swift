@@ -33,7 +33,7 @@ struct SBHBridge: SBComponentOutProtocol {
      - Throws: ComponentErrors.InvalidGPIOType if the gpio parameter is not an instance of the SBPWM type
      */
     init(gpioForward: SBDigitalGPIO?,gpioReverse: SBDigitalGPIO?, gpioEnable: SBDigitalGPIO?, componentName: String) throws {
-        if let gpioForward = gpioForward, gpioReverse = gpioReverse, gpioEnable = gpioEnable {
+        if let gpioForward = gpioForward, let gpioReverse = gpioReverse, let gpioEnable = gpioEnable {
             self.gpioForward = gpioForward
             self.gpioReverse = gpioReverse
             self.gpioEnable = gpioEnable
@@ -60,8 +60,8 @@ struct SBHBridge: SBComponentOutProtocol {
          enableHeader: BBExpansionHeader, enablePin: Int,
          componentName: String) throws {
         if let gpioForward = SBDigitalGPIO(header: forwardHeader, pin: forwardPin, direction: .OUT),
-            gpioReverse = SBDigitalGPIO(header: reverseHeader, pin: reversePin, direction: .OUT),
-            gpioEnable = SBDigitalGPIO(header: enableHeader, pin: enablePin, direction: .OUT)
+            let gpioReverse = SBDigitalGPIO(header: reverseHeader, pin: reversePin, direction: .OUT),
+            let gpioEnable = SBDigitalGPIO(header: enableHeader, pin: enablePin, direction: .OUT)
         {
             self.gpioForward = gpioForward
             self.gpioReverse = gpioReverse
@@ -107,7 +107,7 @@ struct SBHBridge: SBComponentOutProtocol {
      This function will cause the motor to spin in the forward direction
     */
     func goForward() -> Bool {
-        if let gpioForward = self.gpioForward, gpioReverse = self.gpioReverse {
+        if let gpioForward = self.gpioForward, let gpioReverse = self.gpioReverse {
             _ = gpioForward.setValue(value: DigitalGPIOValue.HIGH)
             _ = gpioReverse.setValue(value: DigitalGPIOValue.LOW)
             return true
@@ -119,7 +119,7 @@ struct SBHBridge: SBComponentOutProtocol {
      This function will cause the motor to spin in the reverse direction
      */
     func goReverse() -> Bool {
-        if let gpioForward = self.gpioForward, gpioReverse = self.gpioReverse {
+        if let gpioForward = self.gpioForward,let gpioReverse = self.gpioReverse {
             _ = gpioForward.setValue(value: DigitalGPIOValue.LOW)
             _ = gpioReverse.setValue(value: DigitalGPIOValue.HIGH)
             return true
@@ -131,7 +131,7 @@ struct SBHBridge: SBComponentOutProtocol {
      This function will cause the motor to stop
      */
     func stop() -> Bool {
-        if let gpioForward = self.gpioForward, gpioReverse = self.gpioReverse {
+        if let gpioForward = self.gpioForward, let gpioReverse = self.gpioReverse {
             _ = gpioForward.setValue(value: DigitalGPIOValue.LOW)
             _ = gpioReverse.setValue(value: DigitalGPIOValue.LOW)
             return true

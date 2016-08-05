@@ -16,5 +16,5 @@ done
 
 echo $FILELIST
 
-swiftc $OUTPUTFILE $FILELIST
+/opt/swift/usr/bin/swiftc $OUTPUTFILE $FILELIST
 

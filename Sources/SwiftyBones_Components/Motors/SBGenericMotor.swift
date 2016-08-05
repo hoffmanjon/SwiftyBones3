@@ -55,7 +55,7 @@ struct SBGenericMotor: SBComponentOutProtocol {
         guard gpio != nil && directionalGPIO != nil else {
             throw ComponentErrors.GPIOCanNotBeNil
         }
-        if let testGpio = gpio as? SBPWM, testDirectionalGPIO = directionalGPIO as? SBDigitalGPIO {
+        if let testGpio = gpio as? SBPWM, let testDirectionalGPIO = directionalGPIO as? SBDigitalGPIO {
             self.gpio = testGpio
             self.componentName = componentName
             self.directionalGpio = testDirectionalGPIO
@@ -91,7 +91,7 @@ struct SBGenericMotor: SBComponentOutProtocol {
      - Throws: ComponentErrors.InvalidGPIOType if the gpio parameter is not an instance of the SBPWM type
      */
     init(headerSpeed: BBExpansionHeader, pinSpeed: Int, headerDirection: BBExpansionHeader, pinDirection: Int, componentName: String) throws {
-        if let gpio = SBPWM(header: headerSpeed, pin: pinSpeed), direction = SBDigitalGPIO(header: headerDirection, pin: pinDirection, direction: .OUT) {
+        if let gpio = SBPWM(header: headerSpeed, pin: pinSpeed), let direction = SBDigitalGPIO(header: headerDirection, pin: pinDirection, direction: .OUT) {
             self.gpio = gpio
             self.componentName = componentName
             self.directionalGpio = direction

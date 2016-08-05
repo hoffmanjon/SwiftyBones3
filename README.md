@@ -86,7 +86,7 @@ if let led = SBDigitalGPIO(id: "gpio30", direction: .OUT){
                 if let oldValue = led.getValue() {
                         print("Changing")
                         var newValue = (oldValue == DigitalGPIOValue.HIGH) ? DigitalGPIOValue.LOW : DigitalGPIOValue.HIGH
-                        _ = led.setValue(value:newValue)
+                        led.setValue(newValue)
                         usleep(150000)
                 }
         }
@@ -128,7 +128,7 @@ import Glibc
 if let tmp36 = SBAnalog(id: "AIN1") {
     while(true) {
         if let value = tmp36.getValue() {
-            let milliVolts = (Double(value) / 4096.0) * 1800.0
+            let milliVolts = (value / 4096.0) * 1800.0
             let celsius = (milliVolts - 500.0) / 10.0
             let fahrenheit = (celsius * 9.0 / 5.0) + 32.0
             

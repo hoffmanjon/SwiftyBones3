@@ -6,7 +6,7 @@
 //
 
 
-enum ComponentErrors: ErrorProtocol {
+enum ComponentErrors: Error {
     case GPIOCanNotBeNil
     case InvalidGPIOType(String)
     case PinNotInitalized(String)

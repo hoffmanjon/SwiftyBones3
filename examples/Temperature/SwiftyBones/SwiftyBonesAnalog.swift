@@ -109,7 +109,7 @@ struct SBAnalog: GPIO {
      - Returns:  returns the value for the pin
     */
     func getValue() -> Int? {
-        if let value = readStringFromFile(path: getValuePath()), intValue = Int(value) {
+        if let value = readStringFromFile(path: getValuePath()), let intValue = Int(value) {
             return intValue
         }
         return nil

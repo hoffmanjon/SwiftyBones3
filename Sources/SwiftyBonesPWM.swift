@@ -124,7 +124,7 @@ struct SBPWM: GPIO {
      */
     func initPin() -> Bool {
         _ = writeStringToFile(stringToWrite: SBPWM.PWM_STATE, path: getStatePath())
-        if let val = PWMOCP[id], exportPath = getExportPath(), configPath = getConfigPath() {
+        if let val = PWMOCP[id], let exportPath = getExportPath(), let configPath = getConfigPath() {
             let exportSuccess = writeStringToFile(stringToWrite: String(val.num), path: exportPath)
             let periodSuccess = writeStringToFile(stringToWrite:String(SBPWM.PWM_PERIOD), path: configPath + "/" + SBPWM.PWM_PERIOD_FILE_NAME)
             if !exportSuccess || !periodSuccess {
@@ -204,7 +204,7 @@ struct SBPWM: GPIO {
      - Returns:  Path to file
      */
    private func getConfigPath() -> String? {
-        if let val = PWMOCP[id], ocpPath = getOcpPath() {
+        if let val = PWMOCP[id], let ocpPath = getOcpPath() {
             let retPath = ocpPath + "pwm" + String(val.num)
 	    return retPath
         }
