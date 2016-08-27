@@ -14,9 +14,28 @@ SwiftyBones also has a new component library to make it easy to various componen
 
 ## Installation
 
-To use this library you will need the Debian 8.3 image (kernel 4.1+) and Swift 3.  To install Swift you can following the instructions on the <a href= http://dev.iachieved.it/iachievedit/swift-3-0-on-raspberry-pi-2-and-3/>iachieved.it</a> site.  This page is written for the Raspberry PI however it does work for the BeagleBone Black as well.  It is the instructions that I used.
+The following steps will install Swift 3 on a the standard Debian 8.4 image.  NOTE:  This is for the 8/16/2016 build of Swift 3:
+```
+apt-get install libicu-dev
+apt-get install clang-3.6
+update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.6 100
+update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.6 100
 
-The Package Manager is not available on ARM therefore you will need to download the zip archive for SwiftyBones with the following command:  
+wget http://swift-arm.ddns.net/job/Swift-3.0-ARM-Incremental/105/artifact/swift-3.0-2016-08-16-BBB-ubuntu14.04.tar.gz
+
+mkdir -p /opt/swift/swift-8-16-2016
+cd /opt/swift/swift-8-16-2016
+mv ~/swift-3.0-2016-08-16-BBB-ubuntu14.04.tar.gz ./
+tar xvfz swift-3.0-2016-08-16-BBB-ubuntu14.04.tar.gz
+
+ln -s /opt/swift/swift-8-16-2016/ /opt/swift/swift-current
+
+Add to the end of /etc/profile:
+PATH=$PATH:/opt/swift/swift-current/usr/bin/
+
+```
+
+The Package Manager is not available by default with Swift 3 on ARM therefore you will need to download the zip archive for SwiftyBones with the following command:  
 ```
 wget https://github.com/hoffmanjon/SwiftyBones/archive/master.zip
 ```
