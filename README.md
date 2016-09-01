@@ -105,7 +105,7 @@ if let led = SBDigitalGPIO(id: "gpio30", direction: .OUT){
                 if let oldValue = led.getValue() {
                         print("Changing")
                         var newValue = (oldValue == DigitalGPIOValue.HIGH) ? DigitalGPIOValue.LOW : DigitalGPIOValue.HIGH
-                        led.setValue(newValue)
+                        led.setValue(value: newValue)
                         usleep(150000)
                 }
         }
