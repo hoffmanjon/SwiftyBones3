@@ -37,7 +37,7 @@ PATH=$PATH:/opt/swift/swift-current/usr/bin/
 
 The Package Manager is not available by default with Swift 3 on ARM therefore you will need to download the zip archive for SwiftyBones with the following command:  
 ```
-wget https://github.com/hoffmanjon/SwiftyBones/archive/master.zip
+wget https://github.com/hoffmanjon/SwiftyBones3/archive/master.zip
 ```
 
 Once the archive is downloaded, you can unzip it using the following command:
